@@ -21,8 +21,11 @@ public class Stock extends RepresentationModel<Stock> implements BaseEntity<Long
     @Column(name = "NU_DIVIDEND_YIELD")
     private BigDecimal dividendYield;
 
-    @Column(name = "NU_MARKET_VALUE_MILLION")
+    @Column(name = "NU_MARKET_VALUE_BILLION")
     private BigDecimal marketValue;
+
+    @Column(name = "NU_COMPANY_VALUE_BILLION")
+    private BigDecimal companyValue;
 
     @Column(name = "NU_STAR")
     private BigDecimal star;
@@ -40,24 +43,45 @@ public class Stock extends RepresentationModel<Stock> implements BaseEntity<Long
         return publicCod;
     }
 
-    public void setPublicCod(String publicCod) {
+    public Stock setPublicCod(String publicCod) {
         this.publicCod = publicCod;
+        return this;
     }
 
     public BigDecimal getDividendYield() {
         return dividendYield;
     }
 
-    public void setDividendYield(BigDecimal dividendYield) {
+    public Stock setDividendYield(BigDecimal dividendYield) {
         this.dividendYield = dividendYield;
+        return this;
     }
 
     public BigDecimal getMarketValue() {
         return marketValue;
     }
 
-    public void setMarketValue(BigDecimal marketValue) {
+    public Stock setMarketValue(BigDecimal marketValue) {
         this.marketValue = marketValue;
+        return this;
+    }
+
+    public BigDecimal getCompanyValue() {
+        return companyValue;
+    }
+
+    public Stock setCompanyValue(BigDecimal companyValue) {
+        this.companyValue = companyValue;
+        return this;
+    }
+
+    public BigDecimal getStar() {
+        return star;
+    }
+
+    public Stock setStar(BigDecimal star) {
+        this.star = star;
+        return this;
     }
 
     @Override
