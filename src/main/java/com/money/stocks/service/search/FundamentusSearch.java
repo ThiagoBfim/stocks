@@ -18,6 +18,7 @@ import java.math.RoundingMode;
 public class FundamentusSearch implements StockSearch {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FundamentusSearch.class);
+    private static final String URI_FUNDAMENTUS = "http://www.fundamentus.com.br/detalhes.php?papel=";
 
     @Override
     public TypeStockSearch getType() {
@@ -27,7 +28,7 @@ public class FundamentusSearch implements StockSearch {
     @Override
     public Stock getStock(String stockCod) {
         try {
-            Document doc = Jsoup.connect("http://www.fundamentus.com.br/detalhes.php?papel=" + stockCod).get();
+            Document doc = Jsoup.connect(URI_FUNDAMENTUS + stockCod).get();
             Elements data = doc.getElementsByClass("data");
             return new Stock()
                     .setDividendYield(new BigDecimal(getElementValue(data, 36).replace("%", "")))
