@@ -112,7 +112,7 @@ public class StockControllerTest {
                .getResponse()
                .getContentAsString();
 
-        Assertions.assertThat(contentAsString).isEqualTo("[\"FUNDAMENTUS\",\"STATUS_INVEST\",\"MEUS_DIVIDENDOS\"]");
+        Assertions.assertThat(contentAsString).isEqualTo("[\"STATUS_INVEST\",\"MEUS_DIVIDENDOS\"]");
     }
 
     @Test

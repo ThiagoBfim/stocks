@@ -19,7 +19,6 @@ public class ConnectionUtils {
                 .userAgent(UA_PHONE)
                 .timeout(TIME_OUT)
                 .ignoreContentType(true)
-                .ignoreHttpErrors(true)
                 .get();
     }
 }
