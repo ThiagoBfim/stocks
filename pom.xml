@@ -14,6 +14,12 @@
 	<name>stocks</name>
 	<description>API for stock information</description>
 
+	<scm>
+		<connection>scm:git:https://github.com/ThiagoBfim/stocks.git</connection>
+		<developerConnection>scm:git:ghttps://github.com/ThiagoBfim/stocks.git</developerConnection>
+		<url>https://github.com/ThiagoBfim/stocks.git</url>
+	</scm>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>11</java.version>
@@ -81,6 +87,25 @@
 					<source>11</source>
 					<target>11</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.3</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
