@@ -12,7 +12,7 @@ addons:
   sonarcloud:
     organization: "thiagobfim"
     token:
-      secure: $SONAR_KEY
+      secure: "yHChnDdnBk6wRYURmW8N6OepvJL8YRYW7HUkChGuUFZfcyl5Nu9WqrFAodVFJtZDQSj/KcAy3jv14+ofA8opm8T/GBO3H8WqfnRCF8m+/KaxUJogswNpn/m0IS5yHEppN6J+SKxisRCOcTNh7oXLoqq5pWpNIdotiQR4/LeJui7FFWRbBM5oBSGak8FjeFJ2ESyxoC0yc0E/MipjjAPtndwVKNNapF6JFN4+p1I1gEDWAg8DbbwK2Dkjwii9ZnsG7BDTHT33ndRqXHv5UuJNwwRpz5SNeB4HxuLoPTZKuyk04ih31KC8edhvKxBoEiTOTDWR1ERfvfcD4hjJbQds93p/ZAwqgAelKrmkPMibTe2pA4uZdUAkY5EPTrLSkkwXTf9L0wvRyLaQtqRTIz+JtdBdNO0GMQR8YcRkmVmBCIvRa4gL8h/k6T3WEG5y0yIP3vkdHYUvI21vhResr+B4OHKm8rtargVgOc0peCwcMwqSESyDF3UGqEzvYpdIWH1fBEuaGuCSEqQn+/uoHJpJ5aJC04HfGfpkiALtoAzApSVYrgaF+6fOQ3x3wO/Fw1xumaV6waLrfJqlgI7pthm0DYHVRD+W6OD47TMa8szc93iT97aaGyatFpwpKABTWJ4ykOmDXTK7WX1CRyZ1VlNSsUFJsirsXoVnF7etbtEAvmM="
 
 before_install:
   - chmod +x mvnw
