@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface StockRepository extends JpaRepository<Stock, Long> {
 
-    Optional<Stock> findByPublicCod(String stockCod);
+    Optional<Stock> findByPublicCodIgnoreCase(String stockCod);
 }

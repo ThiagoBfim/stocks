@@ -33,7 +33,7 @@ public class StockService {
                 .findFirst()
                 .map(s -> s.getStock(stockCod))
                 .map(s -> s.setDtLastUpdate(LocalDateTime.now()))
-                .map(s -> s.setId(stockRepository.findByPublicCod(s.getPublicCod()).map(Stock::getId).orElse(null)))
+                .map(s -> s.setId(stockRepository.findByPublicCodIgnoreCase(s.getPublicCod()).map(Stock::getId).orElse(null)))
                 .map(stockRepository::save)
                 .orElse(null);
     }

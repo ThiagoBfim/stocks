@@ -31,7 +31,7 @@ public class StockController {
 
     @GetMapping(value = "/dividendYield/{stockCod}")
     public ResponseEntity<BigDecimal> getStockDividendYield(@PathVariable String stockCod) {
-        return stockRepository.findByPublicCod(stockCod)
+        return stockRepository.findByPublicCodIgnoreCase(stockCod)
                 .map(Stock::getDividendYield)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -39,7 +39,7 @@ public class StockController {
 
     @GetMapping(value = "/{stockCod}")
     public ResponseEntity<Stock> getFullInfo(@PathVariable String stockCod) {
-        return stockRepository.findByPublicCod(stockCod)
+        return stockRepository.findByPublicCodIgnoreCase(stockCod)
                 .or(() -> stockService.updateStock(stockCod))
                 .map(stockEntity -> {
                     final Link updateLink = linkTo(
