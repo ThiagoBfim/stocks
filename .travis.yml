@@ -2,8 +2,10 @@ language: java
 
 os: linux
 dist: trusty
-jdk: oraclejdk8
+jdk: oraclejdk11
 
+before_install:
+  - chmod +x mvnw
 jobs:
   include:
     - stage: "Build project"
