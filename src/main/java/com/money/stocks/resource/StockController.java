@@ -43,7 +43,7 @@ public class StockController {
                 .or(() -> stockService.updateStock(stockCod))
                 .map(stockEntity -> {
                     final Link updateLink = linkTo(
-                            methodOn(StockController.class).updateStockInfo(stockCod, TypeStockSearch.FUNDAMENTUS))
+                            methodOn(StockController.class).updateStockInfo(stockCod, TypeStockSearch.STATUS_INVEST))
                             .withRel("update_date")
                             .withType("PUT");
                     stockEntity.add(updateLink);

@@ -24,7 +24,7 @@ public class StockService {
     }
 
     public Optional<Stock> updateStock(String stockCod) {
-        return Optional.ofNullable(updateStock(stockCod, TypeStockSearch.FUNDAMENTUS));
+        return Optional.ofNullable(updateStock(stockCod, TypeStockSearch.STATUS_INVEST));
     }
 
     public Stock updateStock(String stockCod, TypeStockSearch stockSearch) {
