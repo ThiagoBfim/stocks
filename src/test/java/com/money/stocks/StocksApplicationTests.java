@@ -10,4 +10,5 @@ class StocksApplicationTests {
 	void contextLoads() {
 	}
 
+
 }
