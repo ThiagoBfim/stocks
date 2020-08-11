@@ -6,13 +6,8 @@ jdk: oraclejdk11
 
 before_install:
   - chmod +x mvnw
-jobs:
-  include:
-    - stage: "Build project"
-      script:
-        - ./mvn clean package
 
 deploy:
   provider: heroku
-  app: dio-cities-api-2
+  app: money-stocks
   api_key: $HEROKU_KEY
