@@ -4,7 +4,6 @@ import com.money.stocks.domain.Stock;
 import com.money.stocks.domain.enuns.TypeStockSearch;
 import com.money.stocks.service.StockSearch;
 import com.money.stocks.util.DecimalFormat;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
@@ -28,7 +27,7 @@ public class FundamentusSearch implements StockSearch {
     @Override
     public Stock getStock(String stockCod) {
         try {
-            Document doc = Jsoup.connect(URI_FUNDAMENTUS + stockCod).get();
+            Document doc = ConnectionUtils.getConnection(URI_FUNDAMENTUS + stockCod);
             Elements data = doc.getElementsByClass("data");
             return new Stock()
                     .setDividendYield(DecimalFormat.toBigDecimal(getElementValue(data, 36)))
