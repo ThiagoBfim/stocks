@@ -1,0 +1,46 @@
+package com.money.stocks.service.search;
+
+import com.money.stocks.domain.Stock;
+import com.money.stocks.domain.enuns.TypeStockSearch;
+import com.money.stocks.service.StockSearch;
+import com.money.stocks.util.DecimalFormat;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+
+@Service
+public class MeusDividendosSearch implements StockSearch {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(MeusDividendosSearch.class);
+    private static final String URI_STATUS_INVEST = "https://www.meusdividendos.com/acao/";
+
+
+    @Override
+    public TypeStockSearch getType() {
+        return TypeStockSearch.MEUS_DIVIDENDOS;
+    }
+
+    @Override
+    public Stock getStock(String stockCod) {
+        try {
+            Document doc = ConnectionUtils.getConnection(URI_STATUS_INVEST + stockCod);
+            Element getInvestInfo = doc.getElementsByClass("table table-hover").get(0);
+            final String dividendYield = getInvestInfo.getElementsByClass("converter-percentual").text();
+            final String marketValue = getInvestInfo.getElementsByClass("abreviar-numero").get(1).text();
+
+            return new Stock()
+                    .setDividendYield(DecimalFormat.toBigDecimal(dividendYield).multiply(BigDecimal.valueOf(100)))
+                    .setMarketValue(DecimalFormat.toBigDecimalBillionFormatter(marketValue))
+                    .setPublicCod(stockCod);
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
+    }
+
+}

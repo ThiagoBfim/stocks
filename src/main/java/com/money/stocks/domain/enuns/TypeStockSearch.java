@@ -4,4 +4,5 @@ public enum TypeStockSearch {
 
     FUNDAMENTUS,
     STATUS_INVEST,
+    MEUS_DIVIDENDOS,
 }
