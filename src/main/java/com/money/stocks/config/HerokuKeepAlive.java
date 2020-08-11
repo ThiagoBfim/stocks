@@ -15,7 +15,7 @@ public class HerokuKeepAlive {
     public void herokuKeepAlive() {
         LOG.debug("Heroku not idle execution");
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.getForObject("https://money-stocks.herokuapp.com/", Object.class);
+        restTemplate.getForObject("https://money-stocks.herokuapp.com/stocks", Object.class);
     }
 
 }
