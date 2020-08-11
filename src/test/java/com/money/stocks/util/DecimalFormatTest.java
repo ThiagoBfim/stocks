@@ -15,6 +15,8 @@ class DecimalFormatTest {
         assertThat(DecimalFormat.toBigDecimal("10,5")).isEqualTo(new BigDecimal("10.5"));
         assertThat(DecimalFormat.toBigDecimal("10,51")).isEqualTo(new BigDecimal("10.51"));
         assertThat(DecimalFormat.toBigDecimal("100")).isEqualTo(new BigDecimal("100"));
+        assertThat(DecimalFormat.toBigDecimal("-")).isEqualTo(new BigDecimal("0"));
+        assertThat(DecimalFormat.toBigDecimal("0,0")).isEqualTo(new BigDecimal("0.0"));
     }
 
     @Test
@@ -24,5 +26,6 @@ class DecimalFormatTest {
         assertThat(DecimalFormat.toBigDecimalBillionFormatter("1.900.444.000")).isEqualTo(new BigDecimal("1.89"));
         assertThat(DecimalFormat.toBigDecimalBillionFormatter("2.900444000")).isEqualTo(new BigDecimal("2.90"));
         assertThat(DecimalFormat.toBigDecimalBillionFormatter("8920444000")).isEqualTo(new BigDecimal("8.90"));
+        assertThat(DecimalFormat.toBigDecimalBillionFormatter("-")).isEqualTo(new BigDecimal("0"));
     }
 }

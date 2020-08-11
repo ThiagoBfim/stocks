@@ -44,9 +44,13 @@ public class StockService {
                         .filter(s -> s.getType() == stockSearch)
                         .findFirst()
                         .map(s -> s.getStock(stock.getPublicCod()))
-                        .filter(s -> s.getDtLastUpdate().plusDays(1).isBefore(LocalDateTime.now()))
+                        .filter(this::isOldDate)
                         .map(s -> s.setDtLastUpdate(LocalDateTime.now()))
                         .map(s -> s.setId(stock.getId()))
                         .map(stockRepository::save));
+    }
+
+    private boolean isOldDate(Stock s) {
+        return s.getDtLastUpdate() == null || s.getDtLastUpdate().plusDays(1).isBefore(LocalDateTime.now());
     }
 }

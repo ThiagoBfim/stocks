@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +44,14 @@ class StockServiceTest {
     }
 
     @Test
+    void shouldNotUpdateStock() {
+        Stock bidi11 = stockService.updateStock("bidi11", TypeStockSearch.MEUS_DIVIDENDOS);
+        assertThat(bidi11).isNull();
+    }
+
+    @Test
     void shouldUpdateAllStock() {
+        when(stockRepository.findAll()).thenReturn(Collections.singletonList(new Stock().setPublicCod("BIDI11")));
         stockService.updateAllStock(TypeStockSearch.STATUS_INVEST);
     }
 
@@ -56,7 +64,7 @@ class StockServiceTest {
 
             @Override
             public Stock getStock(String stockCod) {
-                return new Stock();
+                return new Stock().setPublicCod("BIDI11");
             }
         };
     }
