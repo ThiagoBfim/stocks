@@ -18,6 +18,11 @@ public class StatusInvestSearch implements StockSearch {
     private static final Logger LOGGER = LoggerFactory.getLogger(StatusInvestSearch.class);
     private static final String URI_STATUS_INVEST = "https://statusinvest.com.br/acoes/";
 
+    private final ConnectionUtil connectionUtils;
+
+    public StatusInvestSearch(ConnectionUtil connectionUtils) {
+        this.connectionUtils = connectionUtils;
+    }
 
     @Override
     public TypeStockSearch getType() {
@@ -27,7 +32,7 @@ public class StatusInvestSearch implements StockSearch {
     @Override
     public Stock getStock(String stockCod) {
         try {
-            Document doc = ConnectionUtils.getConnection(URI_STATUS_INVEST + stockCod);
+            Document doc = connectionUtils.getConnection(URI_STATUS_INVEST + stockCod);
             final String dividendYield = getValue(doc, "Dividend Yield com base nos últimos 12 meses");
             final String marketValue = getValue(doc, "O valor da ação multiplicado pelo número de ações existentes");
             final String companyValue = getValue(doc, "Soma do valor de mercado das ações com a dívida líquida dessa empresa");
