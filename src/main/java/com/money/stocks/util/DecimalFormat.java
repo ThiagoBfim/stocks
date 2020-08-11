@@ -32,8 +32,7 @@ public class DecimalFormat {
 
     public static float calculateFraction(long number, long divisor) {
         long truncate = (number * 10L + (divisor / 2L)) / divisor;
-        float fraction = (float) truncate * 0.10F;
-        return fraction;
+        return truncate * 0.10F;
     }
 
     private static String toNumber(String value) {

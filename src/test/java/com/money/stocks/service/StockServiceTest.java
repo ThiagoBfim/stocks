@@ -39,7 +39,7 @@ class StockServiceTest {
     void shouldUpdateStock() {
         when(stockRepository.save(any())).thenReturn(new Stock());
         Optional<Stock> bidi11 = stockService.updateStock("bidi11");
-        assertThat(bidi11.isPresent()).isTrue();
+        assertThat(bidi11).isPresent();
         verify(stockRepository).save(Mockito.any());
     }
 
@@ -53,6 +53,7 @@ class StockServiceTest {
     void shouldUpdateAllStock() {
         when(stockRepository.findAll()).thenReturn(Collections.singletonList(new Stock().setPublicCod("BIDI11")));
         stockService.updateAllStock(TypeStockSearch.STATUS_INVEST);
+        verify(stockRepository).save(Mockito.any());
     }
 
     private StockSearch mockStockSearch() {
