@@ -11,3 +11,13 @@ deploy:
   provider: heroku
   app: money-stocks
   api_key: $HEROKU_KEY
+
+
+addons:
+  sonarcloud:
+    organization: "thiagobfim"
+    token:
+      secure: $SONAR_KEY
+
+script:
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
