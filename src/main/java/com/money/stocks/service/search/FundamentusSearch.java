@@ -3,6 +3,7 @@ package com.money.stocks.service.search;
 import com.money.stocks.domain.Stock;
 import com.money.stocks.domain.enuns.TypeStockSearch;
 import com.money.stocks.service.StockSearch;
+import com.money.stocks.util.DecimalFormat;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 @Service
 public class FundamentusSearch implements StockSearch {
@@ -31,9 +31,9 @@ public class FundamentusSearch implements StockSearch {
             Document doc = Jsoup.connect(URI_FUNDAMENTUS + stockCod).get();
             Elements data = doc.getElementsByClass("data");
             return new Stock()
-                    .setDividendYield(new BigDecimal(getElementValue(data, 36).replace("%", "")))
+                    .setDividendYield(DecimalFormat.toBigDecimal(getElementValue(data, 36)))
                     .setMarketValue(getBillionValue(data, 10))
-                    .setCompanyValue(getBillionValue(data, 13))
+                    .setCompanyValue(getBillionValue(data, 12))
                     .setPublicCod(stockCod);
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
@@ -42,7 +42,7 @@ public class FundamentusSearch implements StockSearch {
     }
 
     private BigDecimal getBillionValue(Elements data, int i) {
-        return new BigDecimal(getElementValue(data, i).replaceAll("\\.", "")).divide(new BigDecimal(1_000_000_000), RoundingMode.HALF_UP);
+        return DecimalFormat.toBigDecimalBillionFormatter(getElementValue(data, i));
     }
 
     private String getElementValue(Elements data, int i) {

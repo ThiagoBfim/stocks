@@ -5,10 +5,12 @@ import com.money.stocks.domain.enuns.TypeStockSearch;
 import com.money.stocks.repository.StockRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class StockService {
 
     private final StockRepository stockRepository;
@@ -29,6 +31,7 @@ public class StockService {
                 .filter(s -> s.getType() == stockSearch)
                 .findFirst()
                 .map(s -> s.getStock(stockCod))
+                .map(s -> s.setId(stockRepository.findByPublicCod(s.getPublicCod()).map(Stock::getId).orElse(null)))
                 .map(stockRepository::save)
                 .orElse(null);
 

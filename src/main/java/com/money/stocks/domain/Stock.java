@@ -11,8 +11,8 @@ import java.util.Objects;
 public class Stock extends RepresentationModel<Stock> implements BaseEntity<Long> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID_STOCK", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_STOCK")
     private Long id;
 
     @Column(name = "COD_STOCK", unique = true)
@@ -35,8 +35,9 @@ public class Stock extends RepresentationModel<Stock> implements BaseEntity<Long
         return id;
     }
 
-    public void setId(Long id) {
+    public Stock setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getPublicCod() {
@@ -44,7 +45,9 @@ public class Stock extends RepresentationModel<Stock> implements BaseEntity<Long
     }
 
     public Stock setPublicCod(String publicCod) {
-        this.publicCod = publicCod;
+        if (!publicCod.isBlank()) {
+            this.publicCod = publicCod.toLowerCase();
+        }
         return this;
     }
 
