@@ -4,7 +4,7 @@
 
 Access: https://money-stocks.herokuapp.com/
 
-Api info: https://money-stocks.herokuapp.com/swagger-ui-custom.html
+Api info: https://money-stocks.herokuapp.com/swagger-ui.html
 
 Example use Json in Google Sheets: [Google Sheets JSON](https://support.geckoboard.com/hc/en-us/articles/360006412678-Import-JSON-data-to-a-Google-Sheet)
 
