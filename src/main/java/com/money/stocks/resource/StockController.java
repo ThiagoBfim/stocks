@@ -60,12 +60,12 @@ public class StockController {
 
     @PutMapping(value = "/{stockCod}")
     public ResponseEntity<String> updateStockInfo(@PathVariable String stockCod,
-                                                  @RequestParam(value = "typeSearch", required = false, defaultValue = "FUNDAMENTUS") TypeStockSearch typeSearch) {
+                                                  @RequestParam(value = "typeSearch", required = false, defaultValue = "STATUS_INVEST") TypeStockSearch typeSearch) {
         Stock stock = stockService.updateStock(stockCod, typeSearch);
         if (stock != null) {
             return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.badRequest().body("Ocorreu um erro ao tentar atualizar a ação: " + stockCod);
+        return ResponseEntity.badRequest().body("Error when trying to update a stock of cod: " + stockCod);
     }
 
     @GetMapping(value = "/typeSearch")
@@ -76,7 +76,7 @@ public class StockController {
     }
 
     @PutMapping
-    public ResponseEntity<String> updateAllStockInfo(@RequestParam(value = "typeSearch", required = false, defaultValue = "FUNDAMENTUS") TypeStockSearch typeSearch) {
+    public ResponseEntity<String> updateAllStockInfo(@RequestParam(value = "typeSearch", required = false, defaultValue = "STATUS_INVEST") TypeStockSearch typeSearch) {
         stockService.updateAllStock(typeSearch);
         return ResponseEntity.noContent().build();
     }
