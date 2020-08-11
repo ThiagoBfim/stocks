@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 public class FundamentusSearch implements StockSearch {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FundamentusSearch.class);
-    private static final String URI_FUNDAMENTUS = "http://www.fundamentus.com.br/detalhes.php?papel=";
+    private static final String URI_FUNDAMENTUS = "https://www.fundamentus.com.br/detalhes.php?papel=";
 
     @Override
     public TypeStockSearch getType() {
