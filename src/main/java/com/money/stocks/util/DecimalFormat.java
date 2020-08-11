@@ -10,8 +10,11 @@ public class DecimalFormat {
     }
 
     public static BigDecimal toBigDecimal(String percentValue) {
-        return new BigDecimal(percentValue.replace(",", ".")
-                .replace("%", ""));
+        if(!toNumber(percentValue).isBlank()) {
+            return new BigDecimal(percentValue.replace(",", ".")
+                    .replace("%", ""));
+        }
+        return BigDecimal.ZERO;
     }
 
     public static BigDecimal toBigDecimalBillionFormatter(String billionValue) {
