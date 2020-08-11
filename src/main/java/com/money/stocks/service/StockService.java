@@ -6,6 +6,7 @@ import com.money.stocks.repository.StockRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,9 +32,20 @@ public class StockService {
                 .filter(s -> s.getType() == stockSearch)
                 .findFirst()
                 .map(s -> s.getStock(stockCod))
+                .map(s -> s.setDtLastUpdate(LocalDateTime.now()))
                 .map(s -> s.setId(stockRepository.findByPublicCod(s.getPublicCod()).map(Stock::getId).orElse(null)))
                 .map(stockRepository::save)
                 .orElse(null);
+    }
 
+    public void updateAllStock(TypeStockSearch stockSearch) {
+        stockRepository.findAll()
+                .forEach(stock -> stockSearchs.stream()
+                        .filter(s -> s.getType() == stockSearch)
+                        .findFirst()
+                        .map(s -> s.getStock(stock.getPublicCod()))
+                        .map(s -> s.setDtLastUpdate(LocalDateTime.now()))
+                        .map(s -> s.setId(stock.getId()))
+                        .map(stockRepository::save));
     }
 }

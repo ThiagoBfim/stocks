@@ -4,6 +4,7 @@ import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -29,6 +30,9 @@ public class Stock extends RepresentationModel<Stock> implements BaseEntity<Long
 
     @Column(name = "NU_STAR")
     private BigDecimal star;
+
+    @Column(name = "DT_LAST_UPDATE")
+    private LocalDateTime dtLastUpdate;
 
     @Override
     public Long getId() {
@@ -84,6 +88,15 @@ public class Stock extends RepresentationModel<Stock> implements BaseEntity<Long
 
     public Stock setStar(BigDecimal star) {
         this.star = star;
+        return this;
+    }
+
+    public LocalDateTime getDtLastUpdate() {
+        return dtLastUpdate;
+    }
+
+    public Stock setDtLastUpdate(LocalDateTime dtLastUpdate) {
+        this.dtLastUpdate = dtLastUpdate;
         return this;
     }
 

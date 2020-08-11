@@ -35,7 +35,6 @@ public class StockController {
                 .map(Stock::getDividendYield)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
-
     }
 
     @GetMapping(value = "/{stockCod}")
@@ -69,11 +68,24 @@ public class StockController {
         return ResponseEntity.badRequest().body("Ocorreu um erro ao tentar atualizar a ação: " + stockCod);
     }
 
-
     @GetMapping(value = "/typeSearch")
     public ResponseEntity<List<String>> findTypesSearch() {
         return ResponseEntity.ok(Stream.of(TypeStockSearch.values())
                 .map(Enum::name)
                 .collect(Collectors.toList()));
+    }
+
+    @PutMapping
+    public ResponseEntity<String> updateAllStockInfo(@RequestParam(value = "typeSearch", required = false, defaultValue = "FUNDAMENTUS") TypeStockSearch typeSearch) {
+        stockService.updateAllStock(typeSearch);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<String> getAllStocksIds() {
+        return ResponseEntity.ok(stockRepository.findAll()
+                .stream()
+                .map(Stock::getPublicCod)
+                .collect(Collectors.joining(",")));
     }
 }
