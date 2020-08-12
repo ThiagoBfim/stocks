@@ -54,11 +54,6 @@ public class StatusInvestReitSearch implements ReitSearch {
         }
     }
 
-    private String getValue(Document doc, String s) {
-        return doc.getElementsByAttributeValue("title", s)
-                .get(0).getElementsByClass("value").text();
-    }
-
     private BigDecimal getBillionValue(String value) {
         return DecimalFormat.toBigDecimalBillionFormatter(value);
     }

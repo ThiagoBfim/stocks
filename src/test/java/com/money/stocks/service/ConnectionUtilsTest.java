@@ -10,7 +10,7 @@ import java.io.IOException;
 
 
 @SpringBootTest
-public class ConnectionUtilsTest {
+class ConnectionUtilsTest {
 
     @Autowired
     private ConnectionUtil connectionUtil;
