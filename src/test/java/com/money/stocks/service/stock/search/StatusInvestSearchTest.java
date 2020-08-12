@@ -33,6 +33,7 @@ class StatusInvestSearchTest {
         Assertions.assertThat(bidi11.getMarketValue()).isEqualTo(new BigDecimal("5.09"));
         Assertions.assertThat(bidi11.getCompanyValue()).isEqualTo(new BigDecimal("5.09"));
         Assertions.assertThat(bidi11.getDividendYield()).isEqualTo(new BigDecimal("0.64"));
+        Assertions.assertThat(bidi11.getDistributedEarnings()).isEqualTo(new BigDecimal("1.64"));
     }
 
     private ConnectionUtil mockConnection() {
@@ -40,6 +41,9 @@ class StatusInvestSearchTest {
                 + "<body class='table table-hover'>"
                 + "<div title='Dividend Yield com base nos últimos 12 meses'>"
                 + "       <p class='value'>0,64%</p>"
+                + "</div>"
+                + "<div title='Soma total de proventos distribuídos nos últimos 12 meses'>"
+                + "       <p class='sub-value'>R$ 1,64%</p>"
                 + "</div>"
                 + "<div title='O valor da ação multiplicado pelo número de ações existentes'>"
                 + "       <p class='value'>5.067.972.482</p>"
