@@ -1,4 +1,4 @@
-package com.money.stocks.service.search;
+package com.money.stocks.service;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

@@ -1,8 +1,9 @@
-package com.money.stocks.service.search;
+package com.money.stocks.service.stock.search;
 
 import com.money.stocks.domain.Stock;
 import com.money.stocks.domain.enuns.TypeStockSearch;
-import com.money.stocks.service.StockSearch;
+import com.money.stocks.service.ConnectionUtil;
+import com.money.stocks.service.stock.StockSearch;
 import com.money.stocks.util.DecimalFormat;
 import org.jsoup.nodes.Document;
 import org.slf4j.Logger;

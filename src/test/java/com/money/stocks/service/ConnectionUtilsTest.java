@@ -1,4 +1,4 @@
-package com.money.stocks.service.search;
+package com.money.stocks.service;
 
 import org.assertj.core.api.Assertions;
 import org.jsoup.nodes.Document;

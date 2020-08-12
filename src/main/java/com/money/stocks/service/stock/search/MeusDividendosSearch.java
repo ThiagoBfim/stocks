@@ -1,8 +1,9 @@
-package com.money.stocks.service.search;
+package com.money.stocks.service.stock.search;
 
 import com.money.stocks.domain.Stock;
 import com.money.stocks.domain.enuns.TypeStockSearch;
-import com.money.stocks.service.StockSearch;
+import com.money.stocks.service.ConnectionUtil;
+import com.money.stocks.service.stock.StockSearch;
 import com.money.stocks.util.DecimalFormat;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -40,7 +41,8 @@ public class MeusDividendosSearch implements StockSearch {
             final String marketValue = getInvestInfo.getElementsByClass("abreviar-numero").get(1).text();
 
             return new Stock()
-                    .setDividendYield(DecimalFormat.toBigDecimal(dividendYield).multiply(BigDecimal.valueOf(100)).setScale(2, RoundingMode.DOWN))
+                    .setDividendYield(DecimalFormat.toBigDecimal(dividendYield)
+                            .multiply(BigDecimal.valueOf(100)).setScale(2, RoundingMode.DOWN))
                     .setMarketValue(DecimalFormat.toBigDecimalBillionFormatter(marketValue))
                     .setPublicCod(stockCod);
         } catch (IOException e) {

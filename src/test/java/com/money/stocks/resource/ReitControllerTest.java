@@ -1,9 +1,9 @@
 package com.money.stocks.resource;
 
-import com.money.stocks.domain.Stock;
-import com.money.stocks.domain.enuns.TypeStockSearch;
-import com.money.stocks.repository.StockRepository;
-import com.money.stocks.service.stock.StockService;
+import com.money.stocks.domain.Reit;
+import com.money.stocks.domain.enuns.TypeReitSearch;
+import com.money.stocks.repository.ReitRepository;
+import com.money.stocks.service.reit.ReitService;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,25 +26,25 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(StockController.class)
-public class StockControllerTest {
+@WebMvcTest(ReitController.class)
+public class ReitControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private StockRepository stockRepository;
+    private ReitRepository reitRepository;
 
     @MockBean
-    private StockService stockService;
+    private ReitService reitService;
 
     @Test
     public void shouldReturnDividendYield() throws Exception {
-        Stock stock = createStock();
-        Mockito.when(stockRepository.findByPublicCodIgnoreCase("BIDI11"))
-                .thenReturn(Optional.ofNullable(stock));
+        Reit reit = createReit();
+        Mockito.when(reitRepository.findByPublicCodIgnoreCase("XPML11"))
+                .thenReturn(Optional.ofNullable(reit));
 
-        String contentAsString = mockMvc.perform(get("/stocks/dividendYield/BIDI11")
+        String contentAsString = mockMvc.perform(get("/reits/dividendYield/XPML11")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -56,16 +56,16 @@ public class StockControllerTest {
     }
 
     @Test
-    public void shouldReturnStockInfo() throws Exception {
-        Stock stock = createStock();
-        Mockito.when(stockRepository.findByPublicCodIgnoreCase("BIDI11"))
-                .thenReturn(Optional.ofNullable(stock));
+    public void shouldReturnReitInfo() throws Exception {
+        Reit reit = createReit();
+        Mockito.when(reitRepository.findByPublicCodIgnoreCase("XPML11"))
+                .thenReturn(Optional.ofNullable(reit));
 
-        mockMvc.perform(get("/stocks/BIDI11")
+        mockMvc.perform(get("/reits/XPML11")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("publicCod").value("bidi11"))
+                .andExpect(jsonPath("publicCod").value("xpml11"))
                 .andExpect(jsonPath("dividendYield").value("6.1"))
                 .andExpect(jsonPath("marketValue").value("100.7"))
                 .andExpect(jsonPath("companyValue").value("10"))
@@ -74,71 +74,71 @@ public class StockControllerTest {
     }
 
     @Test
-    public void shouldUpdateStock() throws Exception {
-        Stock stock = createStock();
-        Mockito.when(stockService.updateStock("BIDI11", TypeStockSearch.STATUS_INVEST))
-                .thenReturn(stock);
+    public void shouldUpdateReit() throws Exception {
+        Reit reit = createReit();
+        Mockito.when(reitService.updateReit("XPML11", TypeReitSearch.STATUS_INVEST))
+                .thenReturn(reit);
 
-        mockMvc.perform(put("/stocks/BIDI11?typeSearch=STATUS_INVEST")
+        mockMvc.perform(put("/reits/XPML11?typeSearch=STATUS_INVEST")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
     }
 
     @Test
-    public void shouldNotUpdateStock() throws Exception {
-        mockMvc.perform(put("/stocks/BIDI11?typeSearch=ABC")
+    public void shouldNotUpdateReit() throws Exception {
+        mockMvc.perform(put("/reits/XPML11?typeSearch=ABC")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
-    public void shouldNotUpdateStockWhenStockIsWrong() throws Exception {
-        String contentAsString = mockMvc.perform(put("/stocks/BIDI112")
+    public void shouldNotUpdateReitWhenReitIsWrong() throws Exception {
+        String contentAsString = mockMvc.perform(put("/reits/XPML112")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
 
-        Assertions.assertThat(contentAsString).isEqualTo("Error when trying to update a stock of cod: BIDI112");
+        Assertions.assertThat(contentAsString).isEqualTo("Error when trying to update a Reit of cod: XPML112");
     }
 
     @Test
     public void shouldReturnTypeSearchs() throws Exception {
-        String contentAsString = mockMvc.perform(get("/stocks/typeSearch")
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-               .andReturn()
-               .getResponse()
-               .getContentAsString();
-
-        Assertions.assertThat(contentAsString).isEqualTo("[\"STATUS_INVEST\",\"MEUS_DIVIDENDOS\"]");
-    }
-
-    @Test
-    public void shouldUpdateAllStocks() throws Exception {
-        mockMvc.perform(put("/stocks/")
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
-    }
-
-    @Test
-    public void shouldReturnAllStocksIds() throws Exception {
-        Mockito.when(stockRepository.findAll()).thenReturn(Collections.singletonList(createStock()));
-        String contentAsString = mockMvc.perform(get("/stocks/")
+        String contentAsString = mockMvc.perform(get("/reits/typeSearch")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
-        Assertions.assertThat(contentAsString).isEqualTo("bidi11");
+
+        Assertions.assertThat(contentAsString).isEqualTo("[\"STATUS_INVEST\"]");
     }
 
-    private Stock createStock() {
-        return new Stock()
+    @Test
+    public void shouldUpdateAllReits() throws Exception {
+        mockMvc.perform(put("/reits/")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
+    public void shouldReturnAllReitsIds() throws Exception {
+        Mockito.when(reitRepository.findAll()).thenReturn(Collections.singletonList(createReit()));
+        String contentAsString = mockMvc.perform(get("/reits/")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+        Assertions.assertThat(contentAsString).isEqualTo("xpml11");
+    }
+
+    private Reit createReit() {
+        return new Reit()
                 .setDtLastUpdate(LocalDateTime.of(2020, Month.APRIL, 1, 1, 1))
                 .setCompanyValue(BigDecimal.TEN)
-                .setPublicCod("bidi11")
+                .setPublicCod("xpml11")
                 .setStar(new BigDecimal("7.44"))
                 .setMarketValue(new BigDecimal("100.7"))
                 .setDividendYield(new BigDecimal("6.10"));

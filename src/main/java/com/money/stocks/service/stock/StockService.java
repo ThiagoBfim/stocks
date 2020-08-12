@@ -1,4 +1,4 @@
-package com.money.stocks.service;
+package com.money.stocks.service.stock;
 
 import com.money.stocks.domain.Stock;
 import com.money.stocks.domain.enuns.TypeStockSearch;

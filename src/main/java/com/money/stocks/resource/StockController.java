@@ -3,7 +3,7 @@ package com.money.stocks.resource;
 import com.money.stocks.domain.Stock;
 import com.money.stocks.domain.enuns.TypeStockSearch;
 import com.money.stocks.repository.StockRepository;
-import com.money.stocks.service.StockService;
+import com.money.stocks.service.stock.StockService;
 import org.springframework.hateoas.Link;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

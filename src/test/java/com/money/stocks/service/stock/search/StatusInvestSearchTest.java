@@ -1,7 +1,8 @@
-package com.money.stocks.service.search;
+package com.money.stocks.service.stock.search;
 
 import com.money.stocks.domain.Stock;
 import com.money.stocks.domain.enuns.TypeStockSearch;
+import com.money.stocks.service.ConnectionUtil;
 import org.assertj.core.api.Assertions;
 import org.jsoup.Jsoup;
 import org.junit.jupiter.api.BeforeEach;
