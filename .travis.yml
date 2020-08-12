@@ -24,7 +24,8 @@ deploy:
   provider: heroku
   app: money-stocks
   api_key: $HEROKU_KEY
-
+  on:
+    tags: true
 
 
 cache:
