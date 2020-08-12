@@ -41,7 +41,7 @@ class StatusInvestReitSearchTest {
                 + "<div title='Dividend Yield com base nos últimos 12 meses'>"
                 + "       <p class='value'>4,64%</p>"
                 + "</div>"
-                + "<div class='top-info top-info-2 top-info-md-3 top-info-lg-n d-flex justify-between'>"
+                + "<div class='top-info top-info-2 top-info-md-3 top-info-lg-n d-flex justify-between '>"
                 + "       <p class='sub-value'>2.100.972.482</p>"
                 + "       <p class='sub-value'>2.001.750.482</p>"
                 + "</div>"

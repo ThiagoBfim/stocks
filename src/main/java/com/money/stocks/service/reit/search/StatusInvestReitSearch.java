@@ -38,7 +38,7 @@ public class StatusInvestReitSearch implements ReitSearch {
 
             final String dividendYield = doc.getElementsByAttributeValue("title", "Dividend Yield com base nos últimos 12 meses").get(0)
                     .getElementsByClass("value").text();
-            final Element element = doc.getElementsByClass("top-info top-info-2 top-info-md-3 top-info-lg-n d-flex justify-between")
+            final Element element = doc.getElementsByClass("top-info top-info-2 top-info-md-3 top-info-lg-n d-flex justify-between ")
                     .get(0);
             final String companyValue = element.getElementsByClass("sub-value").get(0).text();
             final String marketValue = element.getElementsByClass("sub-value").get(1).text();
