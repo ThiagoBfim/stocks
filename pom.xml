@@ -16,7 +16,7 @@
 
 	<scm>
 		<connection>scm:git:https://github.com/ThiagoBfim/stocks.git</connection>
-		<developerConnection>scm:git:ghttps://github.com/ThiagoBfim/stocks.git</developerConnection>
+		<developerConnection>scm:git:https://github.com/ThiagoBfim/stocks.git</developerConnection>
 		<url>https://github.com/ThiagoBfim/stocks.git</url>
 	</scm>
 
