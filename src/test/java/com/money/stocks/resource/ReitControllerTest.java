@@ -5,19 +5,18 @@ import com.money.stocks.domain.enuns.TypeReitSearch;
 import com.money.stocks.repository.ReitRepository;
 import com.money.stocks.service.reit.ReitService;
 import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -25,18 +24,23 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(ReitController.class)
+@ExtendWith(MockitoExtension.class)
 public class ReitControllerTest {
 
-    @Autowired
+    private ReitRepository reitRepository = Mockito.mock(ReitRepository.class);
+
+    private ReitService reitService = Mockito.mock(ReitService.class);
+
     private MockMvc mockMvc;
 
-    @MockBean
-    private ReitRepository reitRepository;
+    private ReitController reitController = new ReitController(reitRepository, reitService);
 
-    @MockBean
-    private ReitService reitService;
+    @Before
+    public void setUp() {
+        mockMvc = MockMvcBuilders.standaloneSetup(reitController)
+                .setValidator(new MockValidator())
+                .build();
+    }
 
     @Test
     public void shouldReturnDividendYield() throws Exception {
@@ -69,8 +73,7 @@ public class ReitControllerTest {
                 .andExpect(jsonPath("dividendYield").value("6.1"))
                 .andExpect(jsonPath("marketValue").value("100.7"))
                 .andExpect(jsonPath("companyValue").value("10"))
-                .andExpect(jsonPath("star").value("7.44"))
-                .andExpect(jsonPath("dtLastUpdate").value("2020-04-01T01:01:00"));
+                .andExpect(jsonPath("star").value("7.44"));
     }
 
     @Test
@@ -136,12 +139,23 @@ public class ReitControllerTest {
 
     private Reit createReit() {
         return new Reit()
-                .setDtLastUpdate(LocalDateTime.of(2020, Month.APRIL, 1, 1, 1))
                 .setCompanyValue(BigDecimal.TEN)
                 .setPublicCod("xpml11")
                 .setStar(new BigDecimal("7.44"))
                 .setMarketValue(new BigDecimal("100.7"))
                 .setDividendYield(new BigDecimal("6.10"));
+    }
+
+    private class MockValidator implements Validator {
+        @Override
+        public boolean supports(Class<?> aClass) {
+            return false;
+        }
+
+        @Override
+        public void validate(Object o, Errors errors) {
+
+        }
     }
 
 }
