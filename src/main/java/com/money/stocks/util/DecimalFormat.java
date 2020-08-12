@@ -13,7 +13,7 @@ public class DecimalFormat {
     public static BigDecimal toBigDecimal(String percentValue) {
         if (!toNumber(percentValue).isBlank()) {
             return new BigDecimal(percentValue.replace(",", ".")
-                    .replace("%", ""));
+                    .replace("%", "").replace("R$", "").trim());
         }
         return BigDecimal.ZERO;
     }

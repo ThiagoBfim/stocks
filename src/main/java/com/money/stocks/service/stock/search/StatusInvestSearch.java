@@ -37,11 +37,13 @@ public class StatusInvestSearch implements StockSearch {
             final String dividendYield = getValue(doc, "Dividend Yield com base nos últimos 12 meses");
             final String marketValue = getValue(doc, "O valor da ação multiplicado pelo número de ações existentes");
             final String companyValue = getValue(doc, "Soma do valor de mercado das ações com a dívida líquida dessa empresa");
+            final String distributedEarnings = getSubValue(doc, "Soma total de proventos distribuídos nos últimos 12 meses");
 
             return new Stock()
                     .setDividendYield(DecimalFormat.toBigDecimal(dividendYield))
                     .setMarketValue(getBillionValue(marketValue))
                     .setCompanyValue(getBillionValue(companyValue))
+                    .setDistributedEarnings(DecimalFormat.toBigDecimal(distributedEarnings))
                     .setPublicCod(stockCod);
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
@@ -49,9 +51,14 @@ public class StatusInvestSearch implements StockSearch {
         }
     }
 
-    private String getValue(Document doc, String s) {
-        return doc.getElementsByAttributeValue("title", s)
+    private String getValue(Document doc, String title) {
+        return doc.getElementsByAttributeValue("title", title)
                 .get(0).getElementsByClass("value").text();
+    }
+
+    private String getSubValue(Document doc, String title) {
+        return doc.getElementsByAttributeValue("title", title)
+                .get(0).getElementsByClass("sub-value").text();
     }
 
     private BigDecimal getBillionValue(String value) {

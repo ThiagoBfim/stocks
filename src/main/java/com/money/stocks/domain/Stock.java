@@ -31,6 +31,9 @@ public class Stock extends RepresentationModel<Stock> implements BaseEntity<Long
     @Column(name = "NU_STAR")
     private BigDecimal star;
 
+    @Column(name = "NU_DISTRIBUTED_EARNINGS")
+    private BigDecimal distributedEarnings;
+
     @Column(name = "DT_LAST_UPDATE")
     private LocalDateTime dtLastUpdate;
 
@@ -97,6 +100,15 @@ public class Stock extends RepresentationModel<Stock> implements BaseEntity<Long
 
     public Stock setDtLastUpdate(LocalDateTime dtLastUpdate) {
         this.dtLastUpdate = dtLastUpdate;
+        return this;
+    }
+
+    public BigDecimal getDistributedEarnings() {
+        return distributedEarnings;
+    }
+
+    public Stock setDistributedEarnings(BigDecimal distributedEarnings) {
+        this.distributedEarnings = distributedEarnings;
         return this;
     }
 
