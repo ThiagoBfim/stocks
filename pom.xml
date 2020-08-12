@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.money</groupId>
 	<artifactId>stocks</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>stocks</name>
 	<description>API for stock information</description>
 
@@ -17,7 +17,7 @@
 		<connection>scm:git:https://github.com/ThiagoBfim/stocks.git</connection>
 		<developerConnection>scm:git:https://github.com/ThiagoBfim/stocks.git</developerConnection>
 		<url>https://github.com/ThiagoBfim/stocks.git</url>
-	  <tag>stocks-0.0.1</tag>
+	  <tag>HEAD</tag>
   </scm>
 
 	<properties>
