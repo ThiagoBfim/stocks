@@ -8,10 +8,10 @@ import org.springframework.web.client.RestTemplate;
 
 public class HerokuKeepAlive {
 
-    private static final long MIN_25 = 25 * 60 * 1000L;
+    private static final long MIN_15 = 15 * 60 * 1000L;
     private static final Logger LOG = LoggerFactory.getLogger(HerokuKeepAlive.class);
 
-    @Scheduled(fixedDelay = MIN_25)
+    @Scheduled(fixedDelay = MIN_15)
     public void herokuKeepAlive() {
         LOG.debug("Heroku not idle execution");
         RestTemplate restTemplate = new RestTemplate();
