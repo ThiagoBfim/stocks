@@ -40,11 +40,12 @@ public class StockService {
 
     public void updateAllStock(TypeStockSearch stockSearch) {
         stockRepository.findAll()
+                .stream()
+                .filter(this::isOldDate)
                 .forEach(stock -> stockSearchs.stream()
                         .filter(s -> s.getType() == stockSearch)
                         .findFirst()
                         .map(s -> s.getStock(stock.getPublicCod()))
-                        .filter(this::isOldDate)
                         .map(s -> s.setDtLastUpdate(LocalDateTime.now()))
                         .map(s -> s.setId(stock.getId()))
                         .map(stockRepository::save));
