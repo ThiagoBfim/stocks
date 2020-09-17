@@ -16,7 +16,7 @@ Example use Json in Google Sheets: [Google Sheets JSON](https://support.geckoboa
 * BM&F Bovespa (BVMF)
 
 
-### Tecnologies:
+### Technologies:
 
 * Spring Boot
 * Spring MVC HATEOAS
