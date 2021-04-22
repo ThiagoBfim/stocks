@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.money</groupId>
 	<artifactId>stocks</artifactId>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>0.0.5-SNAPSHOT</version>
 	<name>stocks</name>
 	<description>API for stock information</description>
 
