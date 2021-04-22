@@ -15,7 +15,7 @@ public class HerokuKeepAlive {
     @Scheduled(fixedDelay = MIN_15)
     public void herokuKeepAlive() {
         LOG.debug("Heroku not idle execution");
-        RestTemplate restTemplate = new RestTemplate();
+        var restTemplate = new RestTemplate();
         restTemplate.getForObject("https://money-stocks.herokuapp.com/stocks", Object.class);
     }
 

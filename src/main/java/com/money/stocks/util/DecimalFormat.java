@@ -22,8 +22,8 @@ public class DecimalFormat {
     public static BigDecimal toBigDecimalBillionFormatter(String billionValue) {
         final String numericBillionValue = toNumber(billionValue);
         if (!toNumber(numericBillionValue).isBlank()) {
-            BigDecimal billion = new BigDecimal(1_000_000_000);
-            BigDecimal round = new BigDecimal(numericBillionValue).round(MathContext.DECIMAL64);
+            var billion = new BigDecimal(1_000_000_000);
+            var round = new BigDecimal(numericBillionValue).round(MathContext.DECIMAL64);
             float fraction = calculateFraction(round.longValue(), billion.longValue());
             return BigDecimal.valueOf(fraction).setScale(2, RoundingMode.DOWN);
         }

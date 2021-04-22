@@ -117,7 +117,7 @@ public class Stock extends RepresentationModel<Stock> implements BaseEntity<Long
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        Stock stock = (Stock) o;
+        var stock = (Stock) o;
         return Objects.equals(id, stock.id);
     }
 

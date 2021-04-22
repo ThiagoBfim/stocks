@@ -62,7 +62,7 @@ public class ReitController {
     @PutMapping(value = "/{reitCod}")
     public ResponseEntity<String> updateReitInfo(@PathVariable String reitCod,
                                                  @RequestParam(value = "typeSearch", required = false, defaultValue = "STATUS_INVEST") TypeReitSearch typeSearch) {
-        Reit reit = reitService.updateReit(reitCod, typeSearch);
+        var reit = reitService.updateReit(reitCod, typeSearch);
         if (reit != null) {
             return ResponseEntity.noContent().build();
         }

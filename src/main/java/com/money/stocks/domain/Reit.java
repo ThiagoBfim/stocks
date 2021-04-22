@@ -105,7 +105,7 @@ public class Reit extends RepresentationModel<Reit> implements BaseEntity<Long> 
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        Reit reit = (Reit) o;
+        var reit = (Reit) o;
         return Objects.equals(id, reit.id);
     }
 

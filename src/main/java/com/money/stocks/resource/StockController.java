@@ -61,7 +61,7 @@ public class StockController {
     @PutMapping(value = "/{stockCod}")
     public ResponseEntity<String> updateStockInfo(@PathVariable String stockCod,
                                                   @RequestParam(value = "typeSearch", required = false, defaultValue = "STATUS_INVEST") TypeStockSearch typeSearch) {
-        Stock stock = stockService.updateStock(stockCod, typeSearch);
+        var stock = stockService.updateStock(stockCod, typeSearch);
         if (stock != null) {
             return ResponseEntity.noContent().build();
         }
