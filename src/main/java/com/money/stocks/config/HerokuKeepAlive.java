@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.client.RestTemplate;
 
-@Configuration
+//@Configuration
 public class HerokuKeepAlive {
 
     private static final long MIN_15 = 15 * 60 * 1000L;
