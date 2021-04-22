@@ -1,4 +1,4 @@
-# Stocks API [![Build Status](https://travis-ci.com/ThiagoBfim/stocks.svg?branch=master)](https://travis-ci.org/dodash/gadget-cq-basic) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ThiagoBfim_stocks&metric=coverage)](https://sonarcloud.io/dashboard?id=ThiagoBfim_stocks) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+# Stocks API [![Build Status](https://api.travis-ci.org/ThiagoBfim/stocks.svg?branch=master)](https://travis-ci.org/dodash/gadget-cq-basic) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ThiagoBfim_stocks&metric=coverage)](https://sonarcloud.io/dashboard?id=ThiagoBfim_stocks) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://money-stocks.herokuapp.com/)
 
